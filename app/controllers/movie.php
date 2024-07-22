@@ -33,41 +33,46 @@ class Movie extends Controller {
         // process the review
     }
 
-    public function submitReview() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = json_decode(file_get_contents('php://input'), true);
+  public function submitReview() {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['auth']) && $_SESSION['auth']) {
+          $data = json_decode(file_get_contents('php://input'), true);
 
-            $movieTitle = $data['movieTitle'];
-            $rating = $data['rating'];
-            $reviewText = $data['reviewText'];
+          $movieTitle = $data['movieTitle'];
+          $rating = $data['rating'];
+          $reviewText = $data['reviewText'];
+          $userId = $_SESSION['user_id']; 
 
-            $reviewModel = $this->model('Review');
-            $result = $reviewModel->addReview($movieTitle, $rating, $reviewText);
+          $reviewModel = $this->model('Review');
+          $result = $reviewModel->addReview($movieTitle, $rating, $reviewText, $userId);
 
-            if ($result) {
-                echo json_encode(['success' => true]);
-            } else {
-                echo json_encode(['success' => false]);
-            }
-        }
-    }
+          if ($result) {
+              echo json_encode(['success' => true]);
+          } else {
+              echo json_encode(['success' => false]);
+          }
+      } else {
+          echo json_encode(['success' => false, 'message' => 'User not authenticated']);
+      }
+  }
 
-    public function getAiReview() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = json_decode(file_get_contents('php://input'), true);
+  public function getAiReview() {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['auth']) && $_SESSION['auth']) {
+          $data = json_decode(file_get_contents('php://input'), true);
 
-            $movieTitle = $data['movieTitle'];
+          $movieTitle = $data['movieTitle'];
 
-            $aiModel = $this->model('AiReview');
-            $aiReview = $aiModel->generateReview($movieTitle);
+          $aiModel = $this->model('AiReview');
+          $aiReview = $aiModel->generateReview($movieTitle);
 
-            if ($aiReview) {
-                echo json_encode(['success' => true, 'aiReview' => $aiReview]);
-            } else {
-                echo json_encode(['success' => false]);
-            }
-        }
-    }
+          if ($aiReview) {
+              echo json_encode(['success' => true, 'aiReview' => $aiReview]);
+          } else {
+              echo json_encode(['success' => false]);
+          }
+      } else {
+          echo json_encode(['success' => false, 'message' => 'User not authenticated']);
+      }
+  }
 
   
 }

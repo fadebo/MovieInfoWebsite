@@ -1,11 +1,12 @@
 <?php
 class Review {
-    public function addReview($movieTitle, $rating, $reviewText) {
+    public function addReview($movieTitle, $rating, $reviewText, $userId) {
         $db = db_connect();
-        $statement = $db->prepare("INSERT INTO movie_reviews (movie_title, rating, review_text) VALUES (:movieTitle, :rating, :reviewText)");
+        $statement = $db->prepare("INSERT INTO movie_reviews (movie_title, rating, review_text, user_id) VALUES (:movieTitle, :rating, :reviewText, :userId)");
         $statement->bindValue(':movieTitle', $movieTitle);
         $statement->bindValue(':rating', $rating);
         $statement->bindValue(':reviewText', $reviewText);
+        $statement->bindValue(':userId', $userId);
         return $statement->execute();
     }
 

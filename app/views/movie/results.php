@@ -45,6 +45,7 @@
         <?php endif; ?>
     </div>
 </main>
+
 <!-- Review Modal -->
 <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -55,27 +56,33 @@
             </div>
             <div class="modal-body">
                 <h6 id="movieTitle"></h6>
-                <form id="reviewForm">
-                    <div class="mb-3">
-                        <label for="rating" class="form-label">Rating</label>
-                        <select class="form-select" id="rating" name="rating" required>
-                            <option value="">Select a rating</option>
-                            <option value="1">1 Star</option>
-                            <option value="2">2 Stars</option>
-                            <option value="3">3 Stars</option>
-                            <option value="4">4 Stars</option>
-                            <option value="5">5 Stars</option>
-                        </select>
+                <?php if (isset($_SESSION['auth']) && $_SESSION['auth']): ?>
+                    <form id="reviewForm">
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <select class="form-select" id="rating" name="rating" required>
+                                <option value="">Select a rating</option>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-secondary" id="getAiReview">Get AI Review</button>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reviewText" class="form-label">Review</label>
+                            <textarea class="form-control" id="reviewText" name="reviewText" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
+                <?php else: ?>
+                    <div class="alert alert-warning" role="alert">
+                        You need to be logged in to leave a review. <a href="/login" class="alert-link">Click here to log in</a>.
                     </div>
-                    <div class="mb-3">
-                        <button type="button" class="btn btn-secondary" id="getAiReview">Get AI Review</button>
-                    </div>
-                    <div class="mb-3">
-                        <label for="reviewText" class="form-label">Review</label>
-                        <textarea class="form-control" id="reviewText" name="reviewText" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
-                </form>
+                <?php endif; ?>
             </div>
         </div>
     </div>
