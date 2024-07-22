@@ -44,33 +44,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-<script>
-    // JavaScript for countdown timer
-    document.addEventListener('DOMContentLoaded', function() {
-        var remainingTime = <?php echo $remainingTime; ?>;
-        var countdownElement = document.getElementById('countdown');
-        if (countdownElement && remainingTime > 0) {
-            var interval = setInterval(function() {
-                remainingTime--;
-                countdownElement.textContent = remainingTime;
-                if (remainingTime <= 0) {
-                    clearInterval(interval);
-                    window.location.reload(); // Reload the page when countdown ends
-                }
-            }, 1000);
-        }
-    });
-
-    // JavaScript for back-to-top button
-    var backToTopButton = document.getElementById('back-to-top');
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 100) {
-            backToTopButton.style.display = 'block';
-        } else {
-            backToTopButton.style.display = 'none';
-        }
-    });
-</script>
+<script src="/app/public/js/script.js"></script>
 <!-- <style>
     .footer {
         background-color: grey;
