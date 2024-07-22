@@ -22,7 +22,12 @@
             <?php foreach ($data['movies'] as $movie): ?>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
                     <div class="movie-card">
-                        <img src="<?php echo htmlspecialchars($movie['Poster']); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($movie['Title']); ?>">
+                        <?php
+                        $posterUrl = !empty($movie['Poster']) && $movie['Poster'] != 'N/A' 
+                            ? htmlspecialchars($movie['Poster']) 
+                            : '../app/public/img/default_cover_image.jpg'; // If no image provided
+                        ?>
+                        <img src="<?php echo $posterUrl; ?>" class="img-fluid" alt="<?php echo htmlspecialchars($movie['Title']); ?>">
                         <div class="movie-info">
                             <h5><?php echo htmlspecialchars($movie['Title']); ?></h5>
                             <p><?php echo htmlspecialchars($movie['Year']); ?></p>

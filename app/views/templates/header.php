@@ -35,7 +35,7 @@
                     <a class="nav-link" href="/movie">Movies</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Movie List</a>
+                    <a class="nav-link" href="#">Movie Reviews</a>
                 </li>
             </ul>
 

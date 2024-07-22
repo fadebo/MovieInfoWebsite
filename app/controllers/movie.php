@@ -31,4 +31,42 @@ class Movie extends Controller {
 
         // process the review
     }
+
+    public function submitReview() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $movieTitle = $data['movieTitle'];
+            $rating = $data['rating'];
+            $reviewText = $data['reviewText'];
+
+            $reviewModel = $this->model('Review');
+            $result = $reviewModel->addReview($movieTitle, $rating, $reviewText);
+
+            if ($result) {
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+        }
+    }
+
+    public function getAiReview() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = json_decode(file_get_contents('php://input'), true);
+
+            $movieTitle = $data['movieTitle'];
+
+            $aiModel = $this->model('AiReview');
+            $aiReview = $aiModel->generateReview($movieTitle);
+
+            if ($aiReview) {
+                echo json_encode(['success' => true, 'aiReview' => $aiReview]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+        }
+    }
+
+  
 }
