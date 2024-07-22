@@ -22,9 +22,6 @@
                             <h5><?php echo htmlspecialchars($movie['Title']); ?></h5>
                             <p><?php echo htmlspecialchars($movie['Year']); ?></p>
                         </div>
-                        <div class="review-button">
-                            <button class="btn btn-primary review-modal-btn" data-bs-toggle="modal" data-bs-target="#reviewModal" data-movie-title="<?php echo htmlspecialchars($movie['Title']); ?>">Review</button>
-                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -35,41 +32,5 @@
         <?php endif; ?>
     </div>
 </main>
-
-<!-- Review Modal -->
-<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="reviewModalLabel">Review Movie</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h6 id="movieTitle"></h6>
-                <form id="reviewForm">
-                    <div class="mb-3">
-                        <label for="rating" class="form-label">Rating</label>
-                        <select class="form-select" id="rating" name="rating" required>
-                            <option value="">Select a rating</option>
-                            <option value="1">1 Star</option>
-                            <option value="2">2 Stars</option>
-                            <option value="3">3 Stars</option>
-                            <option value="4">4 Stars</option>
-                            <option value="5">5 Stars</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <button type="button" class="btn btn-secondary" id="getAiReview">Get AI Review</button>
-                    </div>
-                    <div class="mb-3">
-                        <label for="reviewText" class="form-label">Review</label>
-                        <textarea class="form-control" id="reviewText" name="reviewText" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <?php require_once 'app/views/templates/footer.php' ?>
