@@ -166,3 +166,6 @@ ul .dropdown-menu a{
   max-width: 500px;
   margin: 0 auto;
 }
+.modal{
+  color: black;
+}
