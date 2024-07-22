@@ -6,8 +6,9 @@ class Movie extends Controller {
         $api = $this->model('Api');
 
         $movies = $api->search_movies_by_year_range(2023, 2024);
-
+        
         $this->view('movie/index', ['movies' => $movies]);
+        
     }
 
     public function search() {

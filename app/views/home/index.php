@@ -3,7 +3,7 @@
     <div class="page-header" id="banner">
         <div class="row">
             <div class="col-lg-12">
-                <h1>MOVIES</h1>
+                <h1>ALL 2024 Movies</h1>
             </div>
         </div>
     </div>
